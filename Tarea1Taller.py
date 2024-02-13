@@ -1,4 +1,3 @@
-
 ordenes=[]
 seguir=True    
 numeroOrden=1
@@ -18,33 +17,11 @@ def validarReferencia(fechaClienteRetiroOrden):
     
     if 0<diferencia.days<=15:
         print("Su garantia aun esta Activa")
-        referenciaOrden="Ativa"
-        dicOrden["referencia"]=referenciaOrden
+        referenciaOrden="Activa"
     else:
         print("Su garantia ya ha expirado XD")
-        referencia="Desactivada"
-        dicOrden["referencia"]=referencia
-    return referencia
-
-def mostrarOrdenes():
-     for orden in ordenes:
-        print("\n""["+numeroOrden+"]. Numero de Orden")
-        print("Datos de la Orden")
-        print("La fecha de la Orden es: "+fechaOrden)
-        print("El nombre del Cliente es: "+clienteOrden)
-        print("La fecha de inicio de reparacion es: "+fechaInicioReparacionOrden)
-        print("La fecha que se completo la lista: "+fechaOrdenListaOrden)
-        print("La fecha que retiro el cliente: "+fechaClienteRetiroOrden)
-        if tipoOrden==1:
-           print("El precio de la orden es: "+precioOrden+" Lps.")
-        else:
-            print("Estado de la garantia: "+referenciaOrden)
-        print("\n""Datos del vehiculo")
-        print("La descripcion del vehiculo: "+descripcionOrden)
-        print("La falla del vehiculo es: "+fallaOrden)
-        print("La reparacion del vehiculo es: "+reparadoOrden)
-        print("La razon la cual no se reparo es: "+noReparadoOrden)
-        print("El nombre del tecnico es: "+tecnicoOrden)
+        referenciaOrden="Desactivada"
+    return referenciaOrden
             
 while seguir:
     print("\n""Se iniciara a ingresar su orden para el taller de Reparaciones Electronicas: ")
@@ -68,11 +45,12 @@ while seguir:
     tipoOrden=int(input("Seleccione una opcion: "))
     if tipoOrden==1:
         precioOrden=input("Ingrese el Precio de la orden: ")
-        dicOrden["precion"]=precioOrden
+        dicOrden["precio"]=precioOrden
     elif tipoOrden==2:
         referenciaOrden=validarReferencia(fechaClienteRetiroOrden)
+        dicOrden["referencia"] = referenciaOrden
         
-    print("\n""Ingrese los Detalles de la Orden: ")
+    print("\n""Ingrese los Detalles de la Orden")
     descripcionOrden=input("Ingrese la descripcion de su vehiculo: ")
     fallaOrden=input("Ingrese la falla del vehiculo: ")
     reparadoOrden=input("Ingrese como se reparara el vehiculo: ")
@@ -88,9 +66,25 @@ while seguir:
     ordenes.append(dicOrden)
     
     print("\n""Informacion completa de las Ordenes")
-    
-    mostrarOrdenes()
-   
+    for orden in ordenes:
+        print("\n""["+str(numeroOrden)+"]. Numero de Orden")
+        print("Datos de la Orden")
+        print("La fecha de la Orden es: "+fechaOrden)
+        print("El nombre del Cliente es: "+clienteOrden)
+        print("La fecha de inicio de reparacion es: "+fechaInicioReparacionOrden)
+        print("La fecha que se completo la lista: "+fechaOrdenListaOrden)
+        print("La fecha que retiro el cliente: "+fechaClienteRetiroOrden)
+        if tipoOrden==1:
+           print("El precio de la orden es: "+precioOrden+" Lps.")
+        else:
+            print("Estado de la garantia: "+referenciaOrden)
+        print("\n""Datos del vehiculo")
+        print("La descripcion del vehiculo: "+descripcionOrden)
+        print("La falla del vehiculo es: "+fallaOrden)
+        print("La reparacion del vehiculo es: "+reparadoOrden)
+        print("La razon la cual no se reparo es: "+noReparadoOrden)
+        print("El nombre del tecnico es: "+tecnicoOrden)
+        print("-----------------------------------------------")
 
     
     salir=input("\n""Desea ingresar otra orden (Y/N): ""\n").lower
